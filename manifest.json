@@ -7,11 +7,26 @@
     "default_popup": "popup/popup.html",
     "default_icon": "images/icon.png"
   },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "128": "images/icon.png"
+  },
   "permissions": [
     "tabs",
-    "activeTab"
+    "activeTab",
+    "storage"
   ],
   "host_permissions": [
     "https://developer.chrome.com/*"
+  ],
+  "content_scripts": [
+    {
+      "js": ["scripts/content.js"],
+      "matches": [
+        "https://*/*"
+      ]
+    }
   ]
 }
