@@ -1,0 +1,42 @@
+body {
+  width: 20rem;
+}
+
+.input-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: 8px;
+  row-gap: 4px;
+}
+
+.input-form input[type="text"] {
+  flex: 1;
+  height: 24px;
+}
+
+.input-form button {
+  flex: 1;
+  height: 32px;
+}
+
+ul.redirect-list {
+  display: flex;
+  flex-direction: column;
+  padding-inline-start: 0;
+  gap: 4px;
+}
+
+ul.redirect-list li {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #aaa;
+  padding: 4px;
+}
+
+ul.redirect-list li button {
+  align-self: stretch;
+  justify-self: stretch;
+}
