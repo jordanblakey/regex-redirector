@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Regex Redirect",
+  "name": "Regex Redirector",
   "description": "Detect regex patterns in any URL and redirect to another URL.",
   "version": "1.0",
   "action": {
@@ -13,20 +13,12 @@
   "icons": {
     "128": "images/icon.png"
   },
-  "permissions": [
-    "tabs",
-    "activeTab",
-    "storage"
-  ],
-  "host_permissions": [
-    "https://developer.chrome.com/*"
-  ],
+  "permissions": ["tabs", "activeTab", "storage"],
+  "host_permissions": ["https://developer.chrome.com/*"],
   "content_scripts": [
     {
       "js": ["scripts/content.js"],
-      "matches": [
-        "https://*/*"
-      ]
+      "matches": ["https://*/*"]
     }
   ]
 }
