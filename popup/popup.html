@@ -10,16 +10,28 @@
     <h1>Regex Redirector</h1>
     <div class="input-form">
       <label for="pattern">Regex Pattern</label>
-      <input type="text" name="pattern" placeholder="\w+\.net">
+      <input
+        type="text"
+        name="pattern"
+        id="pattern"
+        placeholder="/\w.example.com/"
+      />
       <label for="pattern">Redirect URL</label>
-      <input type="text" name="redirect" placeholder="example.com">
-      <button>Add Redirect</button>
+      <input
+        type="text"
+        id="redirect"
+        name="redirect"
+        placeholder="example.com"
+      />
+      <button id="add-redirect">Add Redirect</button>
     </div>
 
     <h2>Redirects</h2>
-    <ul class="redirect-list">
-      <li>Pattern: \w+\.net <br>Redirect: example.com <button>X</button></li>
-      <li>Pattern: \w+\.net <br>Redirect: example.com <button>X</button></li>
+    <ul id="redirect-list">
+      <!-- <li id="/\wtest1/">
+        Pattern: /\wtest1/ <br />Redirect: example1.com
+        <button class="delete-redirect">X</button>
+      </li> -->
     </ul>
 
     <script src="./popup.js" type="module"></script>
