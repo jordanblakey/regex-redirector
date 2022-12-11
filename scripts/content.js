@@ -10,6 +10,7 @@ function createObserver() {
         for (pString in response.redirects) {
           let pattern = new RegExp(pString.slice(1, pString.length - 1));
           if (location.href.match(pattern)) {
+            chrome.runtime.sendMessage({ redirectNotification: true });
             location.href = `http://${response.redirects[pString]}`;
           }
         }
@@ -18,7 +19,7 @@ function createObserver() {
   });
   const config = { subtree: true, childList: true };
   observer.observe(document, config);
-  console.log("%c▶️ Regex Redirector is active.", logStyle);
+  console.log("%c▶️▶️ Regex Redirector is active.", logStyle);
 }
 
 createObserver();

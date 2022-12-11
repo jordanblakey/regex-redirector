@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Regex Redirector",
-  "description": "Detect regex patterns in any URL and redirect to another URL.",
+  "description": "Simply match regex patterns in any URL and redirect to another URL.",
   "version": "1.0",
   "action": {
     "default_popup": "popup/popup.html",

@@ -59,12 +59,9 @@ export async function handleAddRedirect() {
 
 export async function renderRedirectList() {
   let response = await chrome.storage.local.get(["redirects"]);
-  console.log(response);
   let redirectList = document.getElementById("redirect-list");
   redirectList.innerHTML = "";
   for (let pattern in response.redirects) {
-    console.log(pattern);
-    console.log(response.redirects[pattern]);
     let redirectListItem = document.createElement("li");
     redirectListItem.id = pattern;
     redirectListItem.innerHTML = `Pattern: ${pattern}<br />Redirect: ${response.redirects[pattern]}`;

@@ -1,5 +1,11 @@
-console.log("this happens in the background")
-
-// chrome.runtime.onMessage.addListener(function(request, sender) {
-//   chrome.tabs.update(sender.tab.id, {url: request.redirect})
-// })
+chrome.runtime.onMessage.addListener(function (request, sender) {
+  if (
+    request.hasOwnProperty("redirectNotification") &&
+    request.redirectNotification == true
+  ) {
+    chrome.action.setBadgeText({ text: "▶️▶️" });
+    setTimeout(() => {
+      chrome.action.setBadgeText({ text: "" });
+    }, 5000);
+  }
+});
