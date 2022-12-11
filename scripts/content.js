@@ -1,48 +1,24 @@
-console.log("Hello from content script")
+const logStyle =
+  "padding: 6px 12px; border-radius: 20px; font-weight: bold; color: white; background-color: #4158D0; background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);";
 
+function createObserver() {
+  var previousUrl = "";
+  var observer = new MutationObserver((mutations) => {
+    if (location.href !== previousUrl) {
+      previousUrl = location.href;
+      chrome.storage.local.get(["redirects"]).then((response) => {
+        for (pString in response.redirects) {
+          let pattern = new RegExp(pString.slice(1, pString.length - 1));
+          if (location.href.match(pattern)) {
+            location.href = `http://${response.redirects[pString]}`;
+          }
+        }
+      });
+    }
+  });
+  const config = { subtree: true, childList: true };
+  observer.observe(document, config);
+  console.log("%c▶️ Regex Redirector is active.", logStyle);
+}
 
-chrome.storage.local.set({"test": 1})
-let storageState = chrome.storage.local.get(null)
-console.log(storageState)
-console.log(Object.keys(storageState))
-
-storageState.then(res => {console.log("res:", res)})
-
-// console.log(chrome)
-// chrome.runtime.sendMessage({redirect: "https://wikipedia.org"})
-// console.log(window.location.href)
-
-// if (window.location.href != 'https://www.example.com/') {
-//   window.location.href = 'https://www.example.com/'
-// }
-
-// chrome.storage.local.clear();
-
-// chrome.storage.local.get(["redirects"]).then(response => {
-//   let redirects
-//   if (response.hasOwnProperty("redirects")) {
-//     redirects = response.redirects
-//   } else {
-//     redirects = {}
-//   }
-//   redirects["www.example.com"] = /\wtest1/
-//   redirects["www.example2.com"] = /\wtest2/
-//   chrome.storage.local.set({"redirects": redirects}).then(() => chrome.storage.local.get(["redirects"]).then(response => {
-//     console.log(response)
-//     console.log(Object.keys(response.redirects))
-//     console.log(Object.values(response.redirects))
-//     console.log(Object.entries(response.redirects))
-//   }))
-// })
-
-
-
-
-// chrome.storage.local.get(["redirects"]).then(redirects => {
-//   redirects["\wtest"] = "www.example.com"
-//   chrome.storage.local.set({redirects})
-// })
-
-// chrome.storage.local.get(["redirects"]).then((redirects) => {
-//   console.log(redirects)
-// })
+createObserver();
